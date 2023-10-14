@@ -1,2 +1,2 @@
-# FOSS-Lectio-improvements-
+# FOSS-Lectio-improvements
 A free firefox addon for Lectio
