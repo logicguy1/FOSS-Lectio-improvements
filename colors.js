@@ -30,7 +30,7 @@ for (let i = 0; i < elements.length; i++) {
   for (let x = 0; x < elements[i].children.length; x++) {
     if(index === 0 && elements[i].children[x].hasAttribute("data-lectiocontextcard")){
       color = generateRandomColor(elements[i].children[x].innerText);
-      console.log(color, elements[i].children[x].innerText);
+      // console.log(color, elements[i].children[x].innerText);
       index++;
     }
   }
@@ -41,3 +41,58 @@ for (let i = 0; i < elements.length; i++) {
   }
   elements[i].style.color = "#000";
 }
+
+function setStyles(selector, backgroundImage, backgroundColor) {
+  // Use null to remove the styling (uses default) or "none" to "forbid" the styling.
+  const elements = document.querySelectorAll(selector);
+  if (elements.length > 0) {
+    elements.forEach(function(element) {
+      element.style.backgroundImage = backgroundImage;
+      if (backgroundColor) {
+        element.style.backgroundColor = backgroundColor;
+      }
+    });
+  }
+}
+
+function setChildStyles(selector, backgroundImage, backgroundColor) {
+  // Use null to remove the styling (uses default) or "none" to "forbid" the styling.
+  const elements = document.querySelectorAll(selector);
+  if (elements.length > 0) {
+    elements.forEach(function(element) {
+      const childElements = element.children;
+      for (let i = 0; i < childElements.length; i++) {
+        childElements[i].style.backgroundImage = backgroundImage;
+        if (backgroundColor) {
+          childElements[i].style.backgroundColor = backgroundColor;
+        }
+        //
+        // Check if it's the first-child td within the first tr
+        if (i === 0 && element.tagName === 'TR') {
+          childElements[i].style.borderTopLeftRadius = '10px';
+        }
+
+        // Check if it's the last-child td within the first tr
+        if (i === childElements.length - 1 && element.tagName === 'TR') {
+          childElements[i].style.borderTopRightRadius = '10px';
+        }
+      }
+    });
+  }
+}
+
+const headerColor = "#d3e5f5";
+
+
+setChildStyles(".s2weekHeader", "none", headerColor);
+setChildStyles(".islandHeaderRow", "none", headerColor);
+
+setStyles(".activityHeader", "none", headerColor);
+setStyles(".ls-master-header-logo", "none", null);
+setStyles(".ls-master-header", "none", headerColor);
+setStyles(".islandHeaderContainer", "none", headerColor);
+setStyles(".islandHeaderRow", "none", null);
+
+setStyles("#s_m_mastermenu", "url('/lectio/img/gradlink.png')", "#d3dae0");
+setStyles("#s_m_mastersearchbtn", "url('/lectio/img/gradlink.png')", null);
+
