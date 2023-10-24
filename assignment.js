@@ -1,66 +1,83 @@
 const assignmentContainer = document.getElementById("printStudentAssignmentsArea");
-const assignmentsMenuBar = assignmentContainer.getElementsByClassName("textMid");
 
-console.log(assignmentsMenuBar);
+if (assignmentContainer) {
+  const assignmentsMenuBar = assignmentContainer.getElementsByClassName("textMid");
 
-const completedAssignmentsToggleField = createToggleField();
+  const deliveredToggleField = createAssignmentField("Afleveret", "hideDelivered", "Skjul afleveret opgaver", true);
+  assignmentsMenuBar[0].append(deliveredToggleField);
 
-assignmentsMenuBar[0].append(completedAssignmentsToggleField);
-
-function createToggleField () {
-    const completedAssignmentsToggleField = document.createElement("span");
-    const toggleLabel = document.createElement("label");
-    const toggleButton = document.createElement("input")
-
-    completedAssignmentsToggleField.style.marginLeft = "1rem"
-
-    toggleButton.type = "checkbox";
-    toggleButton.checked = getInitialState();
-
-    toggleButton.addEventListener("change", () => {
-        if (toggleButton.checked) {
-            localStorage.setItem("hideAssignments", "true");
-        } else {
-            localStorage.setItem("hideAssignments", "false");
-        }
-        showHideCompletedAssignments();
-    })
-
-    toggleLabel.innerText = "Skjul afleveret opgaver";
-
-    completedAssignmentsToggleField.append(toggleLabel);
-    completedAssignmentsToggleField.append(toggleButton);
-
-    showHideCompletedAssignments()
-    return completedAssignmentsToggleField;
+  const missingToggleField = createAssignmentField("Mangler", "hideMissing", "Skjul manglende opgaver", false);
+  assignmentsMenuBar[0].append(missingToggleField);
 }
 
-function getInitialState() {
-    localStorage.setItem("hideAssignments", "true");
-    return true
-}
+function createAssignmentField(checkFor, item, fieldText, defaultState) {
+  const assignmentsToggleField = document.createElement("span");
+  assignmentsToggleField.style.marginLeft = "1rem"
 
-function showHideCompletedAssignments() {
-    const assignmentsTable = document.getElementById("s_m_Content_Content_ExerciseGV");
-    const assignmentsTBody = assignmentsTable.getElementsByTagName("tbody");
-    const assignmentElements = assignmentsTBody[0].getElementsByTagName("tr");
+  const toggleButton = document.createElement("input");
+  toggleButton.id = `${item}-${checkFor}`;
+  toggleButton.type = "checkbox";
 
-    console.log(localStorage.getItem("hideAssignments"));
+  toggleButton.checked = getInitialState(item, defaultState);
 
-    let assignmentState = "table-row";
 
-    if (localStorage.getItem("hideAssignments") === "true") {
-        assignmentState = "none";
+  const toggleLabel = document.createElement("label");
+  toggleLabel.setAttribute("for", toggleButton.id);
+
+  toggleLabel.innerText = fieldText;
+
+
+  showHideAssignments(checkFor, item);
+
+  toggleButton.addEventListener("change", function () {
+    if (toggleButton.checked) {
+      toggleButton.setAttribute("checked", true);
+      localStorage.setItem(item, true);
     } else {
-        assignmentState = "table-row";
+      toggleButton.setAttribute("checked", false);
+      localStorage.setItem(item, false);
     }
 
-    console.log(assignmentState);
+    showHideAssignments(checkFor, item);
+  });
 
-    for (let i = 1; i < assignmentElements.length; i++) {
-        const assignmentTD = assignmentElements[i].getElementsByTagName("td");
-        if (assignmentTD[5].innerText === "Afleveret") {
-            assignmentElements[i].style.display = assignmentState;
-        }
+  assignmentsToggleField.append(toggleButton);
+  assignmentsToggleField.append(toggleLabel);
+
+
+  return assignmentsToggleField;
+}
+
+function getInitialState(item, defaultState) {
+  const itemState = localStorage.getItem(item);
+
+  if (itemState === "true") {
+    return true;
+  } else if (itemState === "false") {
+    return false;
+  }
+
+  localStorage.setItem(item, defaultState);
+  return defaultState;
+}
+
+function showHideAssignments(checkFor, item) {
+  const assignmentsTable = document.getElementById("s_m_Content_Content_ExerciseGV");
+  const assignmentsTBody = assignmentsTable.getElementsByTagName("tbody");
+  const assignmentElements = assignmentsTBody[0].getElementsByTagName("tr");
+
+  let assignmentState = "table-row";
+
+  if (localStorage.getItem(item) === "true") {
+    assignmentState = "none";
+  } else {
+    assignmentState = "table-row";
+  }
+
+  for (let i = 1; i < assignmentElements.length; i++) {
+    const assignmentTD = assignmentElements[i].getElementsByTagName("td");
+    if (assignmentTD[5].innerText === checkFor) {
+      assignmentElements[i].style.display = assignmentState;
     }
+  }
 }
