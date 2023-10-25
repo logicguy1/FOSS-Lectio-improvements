@@ -95,4 +95,3 @@ setStyles(".islandHeaderRow", "none", null);
 
 setStyles("#s_m_mastermenu", "url('/lectio/img/gradlink.png')", "#d3dae0");
 setStyles("#s_m_mastersearchbtn", "url('/lectio/img/gradlink.png')", null);
-
