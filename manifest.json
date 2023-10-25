@@ -14,11 +14,11 @@
       "js": ["colors.js", "misc.js"]
     },
     {
-      "matches": ["*://*.lectio.dk/*/SkemaNy.aspx"],
+      "matches": ["*://*.lectio.dk/*/SkemaNy.aspx/*"],
       "js": ["schedule.js"]
     },
     {
-      "matches": ["*://*.lectio.dk/*/OpgaverElev.aspx"],
+      "matches": ["*://*.lectio.dk/*/OpgaverElev.aspx/*"],
       "js": ["assignment.js"]
     }
   ]
