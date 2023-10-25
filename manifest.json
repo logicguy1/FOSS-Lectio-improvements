@@ -11,7 +11,15 @@
   "content_scripts": [
     {
       "matches": ["*://*.lectio.dk/*"],
-      "js": ["colors.js", "assignment.js", "misc.js"]
+      "js": ["colors.js", "misc.js"]
+    },
+    {
+      "matches": ["*://*.lectio.dk/*/SkemaNy.aspx"],
+      "js": ["schedule.js"]
+    },
+    {
+      "matches": ["*://*.lectio.dk/*/OpgaverElev.aspx"],
+      "js": ["assignment.js"]
     }
   ]
 }
