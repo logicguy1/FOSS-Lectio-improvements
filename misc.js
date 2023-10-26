@@ -1,5 +1,6 @@
 document.getElementById("masterContent").style.width = "100vw";
 document.getElementsByClassName("ls-master-container2")[0].style.width = "100vw";
+document.getElementsByClassName("masterbody")[0].style.overflowX = "hidden";
 
 // Dashbord
 const layoutElms = document.getElementsByClassName("ls-std-island-layout-ltr");
