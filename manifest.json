@@ -11,8 +11,8 @@
   "content_scripts": [
     {
       "matches": ["*://*.lectio.dk/*"],
-      "js": ["colors.js", "misc.js", "schedule.js", "assignment.js"]
-    } 
+      "js": ["colors.js", "misc.js", "schedule.js", "assignment.js", "headhider.js"]
+    }
   ],
   "permissions": [
     "storage"
