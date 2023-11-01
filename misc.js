@@ -16,6 +16,24 @@ if (layoutElms.length !== 0) {
     }
   }
 
-  layoutElms[0].parentElement.children[2].style.width = "calc(100vw - 25px)";
   // ERROR: This doesn't always exist!
+  // layoutElms[0].parentElement.children[2].style.width = "calc(100vw - 25px)";
+}
+
+
+// ---------------- Profile rename ---------------- 
+
+const masterPageNav = document.querySelector("#s_m_HeaderContent_subnav_div.ls-master-pageheader");
+
+if (masterPageNav) {
+  // Settings tab rename
+  const profileTab = masterPageNav.querySelector("#s_m_HeaderContent_subnavigator_ctl12");
+  profileTab.innerText = "Indstillinger";
+
+  const logTab = document.getElementById("s_m_HeaderContent_subnavigator_ctl15");
+
+  if (logTab) {
+    logTab.innerText = "Improver Settings";
+  }
+  // Endblock
 }
