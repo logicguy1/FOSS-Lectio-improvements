@@ -14,15 +14,15 @@
       "js": ["colors.js", "misc.js", "headhider.js"]
     },
     {
-      "matches": ["*://*.lectio.dk/*/SkemaNy.aspx/*"],
+      "matches": ["*://*.lectio.dk/*/SkemaNy.aspx*"],
       "js": ["schedule.js"]
     },
     {
-      "matches": ["*://*.lectio.dk/*/OpgaverElev.aspx/*"],
+      "matches": ["*://*.lectio.dk/*/OpgaverElev.aspx*"],
       "js": ["assignment.js"]
     },
     {
-      "matches": ["*://*.lectio.dk/*/AdgangIndstillinger.aspx/*"],
+      "matches": ["*://*.lectio.dk/*/AdgangIndstillinger.aspx*"],
       "js": ["settings.js"]
     }
   ]
