@@ -20,6 +20,10 @@
     {
       "matches": ["*://*.lectio.dk/*/OpgaverElev.aspx/*"],
       "js": ["assignment.js"]
+    },
+    {
+      "matches": ["*://*.lectio.dk/*/AdgangIndstillinger.aspx/*"],
+      "js": ["settings.js"]
     }
   ]
 }
