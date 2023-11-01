@@ -1,3 +1,6 @@
+
+// ---------------- Wide lectio ---------------- 
+
 document.getElementById("masterContent").style.width = "100vw";
 document.getElementsByClassName("ls-master-container2")[0].style.width = "100vw";
 
@@ -14,4 +17,5 @@ if (layoutElms.length !== 0) {
   }
 
   layoutElms[0].parentElement.children[2].style.width = "calc(100vw - 25px)";
+  // ERROR: This doesn't always exist!
 }
