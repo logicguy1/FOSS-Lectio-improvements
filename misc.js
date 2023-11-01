@@ -17,7 +17,7 @@ if (layoutElms.length !== 0) {
   }
 
   // ERROR: This doesn't always exist!
-  // layoutElms[0].parentElement.children[2].style.width = "calc(100vw - 25px)";
+  layoutElms[0].parentElement.children[2].style.width = "calc(100vw - 25px)";
 }
 
 
