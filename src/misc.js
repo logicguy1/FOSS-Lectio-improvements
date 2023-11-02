@@ -26,14 +26,19 @@ if (layoutElms.length !== 0) {
 const masterPageNav = document.querySelector("#s_m_HeaderContent_subnav_div.ls-master-pageheader");
 
 if (masterPageNav) {
-  // Settings tab rename
+  // Settings tab renames
   const profileTab = masterPageNav.querySelector("#s_m_HeaderContent_subnavigator_ctl12");
   profileTab.innerText = "Indstillinger";
 
-  const logTab = document.getElementById("s_m_HeaderContent_subnavigator_ctl15");
+  const currentURL = window.location.href;
+  const regex = /\/indstillinger\//;
 
-  if (logTab) {
-    logTab.innerText = "Improver Settings";
+  if (currentURL.match(regex)) {
+    console.log("The URL contains 'studentIndstillinger'.");
+    const logTab = document.querySelector("#s_m_HeaderContent_subnavigator_ctl15");
+    if (logTab) {
+      logTab.innerText = "Improver Settings";
+    }
   }
   // Endblock
 }
