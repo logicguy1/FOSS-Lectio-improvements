@@ -24,6 +24,10 @@
     {
       "matches": ["*://*.lectio.dk/*/AdgangIndstillinger.aspx*"],
       "js": ["settings.js"]
+    },
+    {
+      "matches": ["*://*.lectio.dk/*/grade_report.aspx*"],
+      "js": ["grades.js"]
     }
   ]
 }
