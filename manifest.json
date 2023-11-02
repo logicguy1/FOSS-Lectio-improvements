@@ -28,6 +28,10 @@
     {
       "matches": ["*://*.lectio.dk/*/grade_report.aspx*"],
       "js": ["src/grades.js"]
+    },
+    {
+      "matches": ["*://*.lectio.dk/*/beskeder2.aspx*"],
+      "js": ["src/messagePictures.js"]
     }
   ]
 }
