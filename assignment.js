@@ -8,6 +8,9 @@ if (assignmentContainer) {
 
   const missingToggleField = createAssignmentField("Mangler", "hideMissing", "Skjul manglende opgaver", false);
   assignmentsMenuBar[0].append(missingToggleField);
+
+  const waitingToggleField = createAssignmentField("Lærer", "hideWaiting", "Skjul opgaver uden feedback", false);
+  assignmentsMenuBar[0].append(waitingToggleField);
 }
 
 function createAssignmentField(checkFor, item, fieldText, defaultState) {
@@ -77,6 +80,8 @@ function showHideAssignments(checkFor, item) {
   for (let i = 1; i < assignmentElements.length; i++) {
     const assignmentTD = assignmentElements[i].getElementsByTagName("td");
     if (assignmentTD[5].innerText === checkFor) {
+      assignmentElements[i].style.display = assignmentState;
+    } else if (assignmentTD[7].innerText === checkFor) {
       assignmentElements[i].style.display = assignmentState;
     }
   }
