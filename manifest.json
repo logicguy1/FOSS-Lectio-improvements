@@ -11,23 +11,23 @@
   "content_scripts": [
     {
       "matches": ["*://*.lectio.dk/*"],
-      "js": ["colors.js", "misc.js", "headhider.js"]
+      "js": ["src/colors.js", "src/misc.js", "src/headhider.js"]
     },
     {
       "matches": ["*://*.lectio.dk/*/SkemaNy.aspx*"],
-      "js": ["schedule.js"]
+      "js": ["src/schedule.js"]
     },
     {
       "matches": ["*://*.lectio.dk/*/OpgaverElev.aspx*"],
-      "js": ["assignment.js"]
+      "js": ["src/assignment.js"]
     },
     {
       "matches": ["*://*.lectio.dk/*/AdgangIndstillinger.aspx*"],
-      "js": ["settings.js"]
+      "js": ["src/settings.js"]
     },
     {
       "matches": ["*://*.lectio.dk/*/grade_report.aspx*"],
-      "js": ["grades.js"]
+      "js": ["src/grades.js"]
     }
   ]
 }
