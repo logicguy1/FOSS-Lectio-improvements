@@ -30,7 +30,8 @@ msgThreadBoxes.forEach(async threadBox => {
   var card = await (await fetch(`https://www.lectio.dk/lectio/${schoolId}/contextcard/contextcard.aspx?lectiocontextcard=` + id)).text();
   var img = card.match(/<img.*>/)[0];
 
-  var imgElm = headerMenu.querySelector("#imgcell" + id);
-  imgElm.innerHTML = img;
+  var imgDiv = headerMenu.querySelector("#imgcell" + id);
+  imgDiv.innerHTML = img;
+  imgDiv.querySelector("img").style = "border-radius: 2px;";
 });
 
