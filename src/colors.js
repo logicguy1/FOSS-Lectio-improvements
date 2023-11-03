@@ -36,12 +36,22 @@ for (let i = 0; i < elements.length; i++) {
   }
 
   if (color !== "") {
-    elements[i].parentNode.style.backgroundColor = color;
-    elements[i].parentNode.style.backgroundImage = "none";
+    if (elements[i].classList.contains("s2cancelled")) {
+      // Schema cancelled
+      elements[i].parentNode.parentNode.style.color = "#000"; // Sets the time to a black color 
+      elements[i].parentNode.style.backgroundColor = "rgb(252, 81, 81)";
+      elements[i].parentNode.style.backgroundImage = "none";
+    } else {
+      // Everything else
+      elements[i].parentNode.style.backgroundColor = color;
+      elements[i].parentNode.style.backgroundImage = "none";
+    }
   }
   elements[i].style.color = "#000";
 }
 
+
+// The functions below are used to easily style headers
 function setStyles(selector, backgroundImage, backgroundColor) {
   // Use null to remove the styling (uses default) or "none" to "forbid" the styling.
   const elements = document.querySelectorAll(selector);
