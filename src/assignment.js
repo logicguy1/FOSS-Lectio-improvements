@@ -3,14 +3,16 @@ const assignmentContainer = document.getElementById("printStudentAssignmentsArea
 if (assignmentContainer) {
   const assignmentsMenuBar = assignmentContainer.getElementsByClassName("textMid");
 
+  // Toggle-fields
   const deliveredToggleField = createAssignmentField("Afleveret", "hideDelivered", "Skjul afleveret opgaver", true);
   assignmentsMenuBar[0].append(deliveredToggleField);
 
   const missingToggleField = createAssignmentField("Mangler", "hideMissing", "Skjul manglende opgaver", false);
   assignmentsMenuBar[0].append(missingToggleField);
 
-  const waitingToggleField = createAssignmentField("Lærer", "hideWaiting", "Skjul opgaver uden feedback", false);
-  assignmentsMenuBar[0].append(waitingToggleField);
+  // BUG: This doens't work properly. Please see https://github.com/logicguy1/FOSS-Lectio-improvements/issues/8
+  // const waitingToggleField = createAssignmentField("Lærer", "hideWaiting", "Skjul opgaver uden feedback", false);
+  // assignmentsMenuBar[0].append(waitingToggleField);
 }
 
 function createAssignmentField(checkFor, item, fieldText, defaultState) {
