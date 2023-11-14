@@ -105,3 +105,12 @@ setStyles(".islandHeaderRow", "none", null);
 
 setStyles("#s_m_mastermenu", "url('/lectio/img/gradlink.png')", "#d3dae0");
 setStyles("#s_m_mastersearchbtn", "url('/lectio/img/gradlink.png')", null);
+
+// Dialog headers
+const dialogs = document.querySelectorAll(".ui-dialog");
+
+if (dialogs.length > 0) {
+  dialogs.forEach(dialog => {
+    dialog.querySelector(".ui-dialog-titlebar").style = `background-image: none; background-color: ${headerColor}`;
+  });
+}
