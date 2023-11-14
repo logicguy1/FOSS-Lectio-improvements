@@ -5,6 +5,7 @@ document.getElementById("masterContent").style.width = "100vw";
 document.getElementsByClassName("ls-master-container2")[0].style.width = "100vw";
 
 // Dashbord
+// BUG: The following code affects more elements than intended. See the profile content islands.
 const layoutElms = document.getElementsByClassName("ls-std-island-layout-ltr");
 if (layoutElms.length !== 0) {
   for (let i = 0; i < layoutElms.length; i++) {
@@ -16,10 +17,17 @@ if (layoutElms.length !== 0) {
     }
   }
 
-  // ERROR: This doesn't always exist!
-  layoutElms[0].parentElement.children[2].style.width = "calc(100vw - 25px)";
+  // BUG: This isn't the right fix. The element doesn't always exist.
+  if (layoutElms[0].parentElement.children[2]) {
+    layoutElms[0].parentElement.children[2].style.width = "calc(100vw - 25px)"
+  }
 }
 
+document.querySelector("#s_m_searchpanel").style.width = "unset";
+
+// ---------------- Master header -----------------
+
+document.querySelector("#s_m_masterHeaderDiv").style.height = "unset";
 
 // ---------------- Profile rename ---------------- 
 
@@ -41,4 +49,17 @@ if (masterPageNav) {
     }
   }
   // Endblock
+}
+
+
+// ---------------- Profile content islands -------
+
+var currentURL = window.location.href;
+var regex = /\/indstillinger\/studentIndstillinger/;
+
+if (currentURL.match(regex)) {
+  var profileContainer = [...document.querySelector(".ls-std-island-layout-ltr").children];
+  profileContainer.forEach(elm => {
+    elm.style.flex = "";
+  });
 }
