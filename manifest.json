@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FOSS Lectio improvements",
-  "version": "1.4",
+  "version": "1.5",
   "description": "The extension includes a rewrite of Lectio Colors and other extensions.",
   "icons": {
     "16": "icons/icon16.png",
