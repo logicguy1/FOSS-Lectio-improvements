@@ -43,7 +43,10 @@ if (assignmentContainer) {
       rowDateBox.innerText = `${inputDateString}\n${dueText}`;
       
       let dueColor;
-      if (days < 1) {
+      if (distance <= 0) {
+        const assignmentstate = row.children[5].innerText;
+        dueColor = assignmentstate === "Afleveret" ? "" : "#FF0000"
+      } else if (days < 1) {
         dueColor = "#FF0000";
       } else if (days < 2) {
         dueColor = "#FFEB3B";
