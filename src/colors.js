@@ -1,15 +1,9 @@
 function generateRandomColor(seed) {
-    const brightHues = [30, 60, 120, 180, 240, 270]; // Bright hues in degrees (green, yellow, cyan, blue, magenta, purple)
-    const hue = brightHues[Math.floor(Math.abs(hashCode(seed)) % brightHues.length)]; // Select a random bright hue
-    
-    const saturation = 30 + Math.abs(hashCode(seed + "s") % 20); // Adjust saturation (50-100)
-    let lightness = 50 + Math.abs(hashCode(seed + "l") % 35); // Adjust lightness (50-80)
+  const key = hashCode(seed);
+  const hue = Math.abs(key % 360);
+  console.log(hashCode(seed), seed % 360)
 
-    if (hue === 240) {
-    lightness = lightness + 10
-  }
-
-    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  return `hsl(${hue}, 77%, 84%)`;
 }
 
 function hashCode(str) {

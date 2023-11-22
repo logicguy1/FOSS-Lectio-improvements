@@ -41,6 +41,22 @@ if (assignmentContainer) {
 
       var dueText = `${distance <= 0 ? "Udløbet" : formatDueText(days, hours, minutes, seconds)}`;
       rowDateBox.innerText = `${inputDateString}\n${dueText}`;
+      
+      let dueColor;
+      if (distance <= 0) {
+        const assignmentstate = row.children[5].innerText;
+        dueColor = assignmentstate === "Afleveret" ? "" : "#FF0000"
+      } else if (days < 1) {
+        dueColor = "#FF0000";
+      } else if (days < 2) {
+        dueColor = "#FFEB3B";
+      } else if (days < 14) {
+        dueColor = "#8BC34A";
+      } else {
+        dueColor = "#4CAF50";
+      }
+
+      rowDateBox.style["background-color"] = dueColor;
 
       // TODO: Maybe change the color based on "distance".
       if (distance <= 0) {
