@@ -1,34 +1,40 @@
-# FOSS-Lectio-improvements
+<div align = center>
 
+TODO: This should be the logo.
+![](https://github.com/)
 
 <h1 align=center> FOSS Lectio Improvements </h1>
 
-<p align=center> A free and open source browser extension for Lectio. </p>
-
 <br>
 
+<!-- [![Badge Stars]][Stars] -->
 [![Badge License]][License] 
 ![Badge Language] 
-[![Badge Stars]][Stars] 
 [![Badge Issues]][Issues] 
 [![Badge Pull Requests]][Pull Requests] 
 [![Badge Pull Requests Closed]][Pull Requests Closed] 
 
 <br>
 
-TODO: This should be the logo.
-![](https://github.com/)
+
+<p align=center> A free and open source browser extension for Lectio. </p>
+
+<br>
 
 ---
 
 **[<kbd> <br> Install <br> </kbd>][Install]** 
-**[<kbd> <br> Configure <br> </kbd>][Features]** 
+**[<kbd> <br> Features <br> </kbd>][Features]** 
 **[<kbd> <br> Gallery <br> </kbd>][Gallery]** 
 **[<kbd> <br> Contribute <br> </kbd>][Contribute]**
 
 ---
 
-## Features
+<br>
+
+</div>
+
+# Features
   * 
   * 
   * 
@@ -40,7 +46,9 @@ TODO: This should be the logo.
   * 
   * 
 
-## Installation
+<br>
+
+# Installation
 
 ### Mozilla Addons
 
@@ -50,7 +58,9 @@ TODO: This should be the logo.
 
 [Chrome]
 
-## Gallery
+<br>
+
+<h1 align=center> Gallery </h1>
 
 <!----------------------------------------------------------------------------->
 
@@ -64,6 +74,7 @@ TODO: This should be the logo.
 
 [Contribute]: https://github.com/logicguy1/FOSS-Lectio-improvements/blob/master/CONTRIBUTING.md
 [Install]: https://github.com/logicguy1/FOSS-Lectio-improvements#Installation
+[Features]: https://github.com/logicguy1/FOSS-Lectio-improvements#Features
 
 [Mozilla]: https://addons.mozilla.org/en-US/firefox/addon/foss-lectio-improvements/
 [Chrome]: https://chromewebstore.google.com/detail/dpkemhpefffgmciiijaakddhlllcfplh
