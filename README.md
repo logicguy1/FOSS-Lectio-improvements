@@ -64,16 +64,20 @@ This extension offers numerous QoL[^1] features to Lectio while maintaining most
 # About
 
 This extensions primary focus is QoL features with a small apperance overhaul. We wanted to provide a FOSS[^2] extension alternative, where every student or teacher using Lectio could participate in the development. 
+
 The open nature of this project also ensures that development can continue past interest of the original developers. With the closed source extension "Lectio Improver" now being abandoned, we feel like this is the optimal time for you to jump aboard and [help](/CONTRIBUTING.md) this project become something **big!**
 
 <br>
 
-<h1 align=center> Gallery </h1>
-
+# Gallery
+<div align = center>
+ 
 ![Gallery1]
 ![Gallery2]
 ![Gallery3]
 ![Gallery4]
+
+</div>
 
 <!--------------------------------{ Footnotes }-------------------------------->
 
