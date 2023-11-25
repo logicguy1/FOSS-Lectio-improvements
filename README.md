@@ -40,6 +40,7 @@ This extension offers numerous QoL[^1] features to Lectio while maintaining most
   * Multi Browser Support
   * Assignment filtering based on delivered and missing status
   * Assignment deadline countdown timer with colors 
+  * Profile images in messages
   * Colored schedule blocks
   * Schedule colors highlighting cancelled and changed classes 
   * A wide responsive layout 
@@ -69,7 +70,12 @@ The open nature of this project also ensures that development can continue past 
 
 <h1 align=center> Gallery </h1>
 
-<!--------------------------------{ FootNotes }-------------------------------->
+![Gallery1]
+![Gallery2]
+![Gallery3]
+![Gallery4]
+
+<!--------------------------------{ Footnotes }-------------------------------->
 
 [^1]: Quality of life.
 [^2]: Free and open source.
@@ -77,24 +83,28 @@ The open nature of this project also ensures that development can continue past 
 <!---------------------------------{ Labels }---------------------------------->
 
 [Stars]: https://starchart.cc/logicguy1/FOSS-Lectio-improvements
-[Gallery]: /README.md#Gallery
 
 [Issues]: https://github.com/logicguy1/FOSS-Lectio-improvements/issues
 [License]: /LICENSE
 [Pull Requests]: https://github.com/logicguy1/FOSS-Lectio-improvements/pulls
 [Pull Requests Closed]: https://github.com/logicguy1/FOSS-Lectio-improvements/pulls?q=is%3Apr+is%3Aclosed
 
+[Install]: #Installation
+[Features]: #Features
+[About]: #About
+[Gallery]: #Gallery
 [Contribute]: /CONTRIBUTING.md
-[Install]: /README.md#Installation
-[Features]: /README.md#Features
-[About]: /README.md#About
 
 [Mozilla]: https://addons.mozilla.org/en-US/firefox/addon/foss-lectio-improvements/
 [Chrome]: https://chromewebstore.google.com/detail/dpkemhpefffgmciiijaakddhlllcfplh
 
 <!----------------------------------{ Images }--------------------------------->
 
-[Logo]: /icons/icon_transparent.png
+[Logo]: /assets/logo_transparent.png
+[Gallery1]: /assets/gallery/assignment_countdown_colors.png
+[Gallery2]: /assets/gallery/schedule_colors.png
+[Gallery3]: /assets/gallery/colored_grades.png
+[Gallery4]: /assets/gallery/message_profile_pictures.png
 
 <!----------------------------------{ Badges }--------------------------------->
 
