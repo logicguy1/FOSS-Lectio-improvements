@@ -1,9 +1,28 @@
 function generateRandomColor(seed) {
-  const key = hashCode(seed);
-  const hue = Math.abs(key % 360);
-  console.log(hashCode(seed), seed % 360)
+  const hues = [
+    120, // Green
+    180, // cyan
+    200,
+    220,
+    240, // Blue
+    270 // Purple
+  ]; 
+  const hue = hues[Math.floor(Math.abs(hashCode(seed)) % hues.length)]; 
 
-  return `hsl(${hue}, 77%, 84%)`;
+  const sats = [30, 35, 40, 45, 50]; 
+  let saturation = sats[Math.floor(Math.abs(hashCode(seed)) % sats.length)];
+  const lightss = [57, 59, 61, 63, 65, 67, 69, 72]; 
+  let lightness = lightss[Math.floor(Math.abs(hashCode(seed)) % lightss.length)];
+
+  if (hue === 240) { // Blue
+    lightness += 10
+  } else if (hue == 120) { // Green
+    lightness += 10
+  } else if (hue == 270) { // purple 
+    lightness += 10
+  }
+
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
 function hashCode(str) {
@@ -108,3 +127,4 @@ if (dialogs.length > 0) {
     dialog.querySelector(".ui-dialog-titlebar").style = `background-image: none; background-color: ${headerColor}`;
   });
 }
+
