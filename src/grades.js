@@ -23,32 +23,42 @@ function get_color(grade) {
     : grade.innerText === "F" ? aweful : "";
 }
 
-const divElm = document.getElementById("printareaDiplomaLines");
-const table = divElm.children[0];
-const tablerows = Array.from(table.children[0].children);
+/*
+ * Colors specified fields within a table identified by a given selector.
+ *
+ * This function takes a selector for a table element, shifts the rows by a specified
+ * amount, and colors specific fields indicated by an array of indexes.
+ *
+ * @param {string} tableSelector - The selector for the table element (CSS selector).
+ * @param {number} shiftsAmount - The number of times the rows should be shifted. This is used to remove headers.
+ * @param {number[]} arrayIndex - An array of indexes, specifying a fields index to be colored.
+ *                                e.g., [2, 3, 5, 6] colors the 3rd, 4th, 6th, and 7th fields.
+ *
+ * @returns {void} - The function doesn't return a value.
+ *
+ * @example
+ * colorFields("#printareaDiplomaLines>table>tbody", 2, [2, 3, 5, 6]);
+ */
+function colorFields(tableSelector, shiftsAmount, arrayIndex) {
+  const divElm = document.querySelector(tableSelector);
+  const tablerows = [...divElm.children];
 
-// Remove two first elements
-tablerows.shift();
-tablerows.shift();
+  // Remove first n elements
+  for (let n = 0; n < shiftsAmount; n++) {
+    tablerows.shift();
+  }
 
-for (let i = 0; i < tablerows.length; i++) {
-  const row = tablerows[i].children;
-
-  row[2].style.backgroundColor = get_color(row[2]);
-  row[3].style.backgroundColor = get_color(row[3]); 
-  row[5].style.backgroundColor = get_color(row[5]); 
-  row[6].style.backgroundColor = get_color(row[6]); 
+  // This colors each provided field index from arrayIndex if it exists.
+  tablerows.forEach(row => {
+    arrayIndex.forEach(index => {
+      if (row.children[index]) {
+        row.children[index].style.backgroundColor = get_color(row.children[index]);
+      }
+    });
+  });
 }
 
-const divElm2 = document.getElementById("printareaprotocolgrades");
-const table2 = divElm2.children[0].children[0];
-const tablerows2 = Array.from(table2.children[0].children);
-
-console.log(tablerows2)
-tablerows2.shift();
-
-for (let i = 0; i < tablerows2.length; i++) {
-  const row = tablerows2[i].children;
-
-  row[7].style.backgroundColor = get_color(row[7]);
-}
+colorFields("#printareaDiplomaLines>table>tbody", 2, [2, 3, 5, 6]);
+colorFields("table#s_m_Content_Content_ProtokolLinierGrid>tbody", 1, [9]);
+colorFields("#s_m_Content_Content_karakterView_KarakterNoterGrid>tbody", 1, [2]);
+colorFields("#s_m_Content_Content_karakterView_KarakterGV>tbody", 1, [2]);
