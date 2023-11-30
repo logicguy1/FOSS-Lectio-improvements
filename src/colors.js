@@ -1,15 +1,28 @@
 function generateRandomColor(seed) {
-    const brightHues = [30, 60, 120, 180, 240, 270]; // Bright hues in degrees (green, yellow, cyan, blue, magenta, purple)
-    const hue = brightHues[Math.floor(Math.abs(hashCode(seed)) % brightHues.length)]; // Select a random bright hue
-    
-    const saturation = 30 + Math.abs(hashCode(seed + "s") % 20); // Adjust saturation (50-100)
-    let lightness = 50 + Math.abs(hashCode(seed + "l") % 35); // Adjust lightness (50-80)
+  const hues = [
+    120, // Green
+    180, // cyan
+    200,
+    220,
+    240, // Blue
+    270 // Purple
+  ]; 
+  const hue = hues[Math.floor(Math.abs(hashCode(seed)) % hues.length)]; 
 
-    if (hue === 240) {
-    lightness = lightness + 10
+  const sats = [30, 35, 40, 45, 50]; 
+  let saturation = sats[Math.floor(Math.abs(hashCode(seed)) % sats.length)];
+  const lightss = [57, 59, 61, 63, 65, 67, 69, 72]; 
+  let lightness = lightss[Math.floor(Math.abs(hashCode(seed)) % lightss.length)];
+
+  if (hue === 240) { // Blue
+    lightness += 10
+  } else if (hue == 120) { // Green
+    lightness += 10
+  } else if (hue == 270) { // purple 
+    lightness += 10
   }
 
-    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
 function hashCode(str) {
@@ -114,3 +127,4 @@ if (dialogs.length > 0) {
     dialog.querySelector(".ui-dialog-titlebar").style = `background-image: none; background-color: ${headerColor}`;
   });
 }
+
