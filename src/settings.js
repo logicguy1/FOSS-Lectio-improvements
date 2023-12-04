@@ -1,3 +1,9 @@
+const mainHeaderTitle = document.querySelector("#s_m_HeaderContent_MainTitle");
+
+if (mainHeaderTitle) {
+  mainHeaderTitle.childNodes[1].textContent = "FOSS Improver Settings & Logs";
+}
+
 /*
  * Makes a new lectio container.
  *
