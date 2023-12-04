@@ -19,7 +19,7 @@ if (mainHeaderTitle) {
  */
 function newLectioContainer(tabName) {
   const section = document.createElement("section");
-  section.classList = "largeBlock defaultBlockHeight island";
+  section.classList = "island";
 
   const headingContainer = document.createElement("div");
   headingContainer.setAttribute("role", "heading");
@@ -49,4 +49,24 @@ if (lsContentContainer) {
   const test = newLectioContainer("Test container");
   lsContentContainer.appendChild(test);
   // Endblock
+
+  //----------------------------------------------------//
+  //              Creates a two-column layout           //
+  //----------------------------------------------------//
+
+  lsContentContainer.style.display = "grid";
+  lsContentContainer.style.gridTemplateColumns = "repeat(2, 1fr)";
+  lsContentContainer.style.gap = "10px";
+
+  // Moves the login logs to the bottom.
+  const sectionElement = document.querySelector('.ls-mobile-content-fullwidth > section');
+
+  if (sectionElement) {
+    // Removes the classes defining size; grid handles it.
+    sectionElement.classList.remove("mediumBlock", "defaultBlockHeight");
+
+    // Replace the parent div with the section
+    lsContentContainer.removeChild(sectionElement.parentElement);
+    lsContentContainer.appendChild(sectionElement);
+  }
 }
