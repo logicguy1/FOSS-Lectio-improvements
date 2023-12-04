@@ -78,6 +78,87 @@ function newSettingsItem(settingsId, type, labelText) {
 
 var lsContentContainer = document.querySelector("#contenttable.ls-content");
 if (lsContentContainer) {
+  //----------------------------------------------------//
+  //              Color Settings container              //
+  //----------------------------------------------------//
+
+  const colorsContainer = newLectioContainer("Farve indstillinger");
+
+  // Scedule colors
+  const scheduleColors = newSettingsItem("schedule-colorscheme", "select", "Vælg farvetema for skemabrikkerne.");
+  scheduleColors.settingElm.innerHTML = `
+    <option value="colorful"> Colorful </option>
+    <option value="basic"> Basic </option>
+    <option value="none"> None </option>
+  `;
+
+  for (let i = 0; i < scheduleColors.settingElm.options.length; i++) {
+    if (scheduleColors.settingElm.options[i].value === SettingsStore.simpleGet("schedule_colorscheme")) {
+      scheduleColors.settingElm.options[i].selected = true;
+      break;
+    }
+  }
+
+  scheduleColors.settingElm.addEventListener("change", (e) => {
+    switch (e.target.value) {
+      case "colorful":
+        SettingsStore.set("schedule_colorscheme", "colorful");
+        break;
+      case "basic":
+        SettingsStore.set("schedule_colorscheme", "basic");
+        break;
+      case "none":
+        SettingsStore.set("schedule_colorscheme", "none");
+        break;
+      default:
+        console.error("The selected setting is not implemented. Please report this.");
+        break;
+    }
+  });
+
+  colorsContainer.contentContainer.appendChild(scheduleColors.span);
+
+  // Grade colors
+  const gradeColors = newSettingsItem("grade-colors", "checkbox", "Farvelæg karakterer baseret på præstation.");
+
+  gradeColors.settingElm.checked = SettingsStore.simpleGet("grade_colors") === "true" ? true : false;
+
+  gradeColors.settingElm.addEventListener("change", (e) => {
+    if (e.target.checked) {
+      SettingsStore.set("grade_colors", "true");
+    } else {
+      SettingsStore.set("grade_colors", "false");
+    }
+  });
+  colorsContainer.contentContainer.appendChild(gradeColors.span);
+
+  // Appends colorsContainer
+  lsContentContainer.appendChild(colorsContainer.section);
+
+  //----------------------------------------------------//
+  //              Misc Settings container               //
+  //----------------------------------------------------//
+
+  const miscContainer = newLectioContainer("Andet");
+
+  // Hide profile pictures
+  const headHider = newSettingsItem("hide-head", "checkbox", "Fjern folks profilbilleder toppen af siden.");
+
+  headHider.settingElm.checked = SettingsStore.simpleGet("hide_head") === "true" ? true : false;
+ 
+  headHider.settingElm.addEventListener("change", (e) => {
+    if (e.target.checked) {
+      SettingsStore.set("hide_head", "true");
+    } else {
+      SettingsStore.set("hide_head", "false");
+    }
+    location.reload();
+  });
+
+  miscContainer.contentContainer.appendChild(headHider.span);
+
+  // Appends miscContainer
+  lsContentContainer.appendChild(miscContainer.section);
 
   //----------------------------------------------------//
   //              Creates a two-column layout           //
