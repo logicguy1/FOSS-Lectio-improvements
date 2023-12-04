@@ -39,16 +39,45 @@ function newLectioContainer(tabName) {
   section.appendChild(headingContainer);
   section.appendChild(contentContainer);
 
-  return section;
+  return {section: section, contentContainer: contentContainer};
+}
+
+// The settingId should be lowercase and use hyphens instead of spaces
+function newSettingsItem(settingsId, type, labelText) {
+  const span = document.createElement("span");
+  span.id = `settingsSpan-${settingsId}`;
+
+  const label = document.createElement("label");
+  var settingsElement;
+
+  switch (type) {
+    case "select":
+      settingsElement = document.createElement("select");
+      settingsElement.id = `settings-${settingsId}`;
+      settingsElement.classList.add = "settings-select";
+      break;
+    case "checkbox":
+      settingsElement = document.createElement("input");
+      settingsElement.type = "checkbox";
+      settingsElement.id = `settings-${settingsId}`;
+      settingsElement.classList.add = "settings-checkbox";
+      break;
+    default:
+      console.error("A type must be provided to create an element.");
+  }
+
+  label.setAttribute("for", settingsElement.id);
+  label.innerText = labelText;
+
+  span.append(label);
+  span.append(settingsElement);
+  span.append(document.createElement("br"));
+
+  return {"span": span, "settingElm": settingsElement};
 }
 
 var lsContentContainer = document.querySelector("#contenttable.ls-content");
-// var lsContentContainer = document.querySelector(".ls-content-container");
 if (lsContentContainer) {
-  // Settings container
-  const test = newLectioContainer("Test container");
-  lsContentContainer.appendChild(test);
-  // Endblock
 
   //----------------------------------------------------//
   //              Creates a two-column layout           //
