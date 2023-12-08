@@ -12,7 +12,7 @@
   "content_scripts": [
     {
       "matches": ["*://*.lectio.dk/*"],
-      "js": ["src/lib/settings.js", "src/colors.js", "src/misc.js", "src/headhider.js"]
+      "js": ["src/lib/settings.js", "src/colors.js", "src/misc.js", "src/headhider.js", "src/chrome.js"]
     },
     {
       "matches": ["*://*.lectio.dk/*/SkemaNy.aspx*"],
