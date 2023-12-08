@@ -1,4 +1,6 @@
-// TODO: Make a setting (boolean) that hides this picture.
 const profilePicture = document.getElementById("s_m_HeaderContent_picctrlthumbimage");
 
-profilePicture.style.display = "none";
+const hideHead = SettingsStore.get("hide_head", "false");
+if (hideHead === "true") {
+  profilePicture.style.display = "none";
+}

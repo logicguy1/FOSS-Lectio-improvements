@@ -34,18 +34,20 @@ document.querySelector("#s_m_masterHeaderDiv").style.height = "unset";
 const masterPageNav = document.querySelector("#s_m_HeaderContent_subnav_div.ls-master-pageheader");
 
 if (masterPageNav) {
-  // Settings tab renames
+  // Settings tab renames and changes to href
   const profileTab = masterPageNav.querySelector("#s_m_HeaderContent_subnavigator_ctl12");
-  profileTab.innerText = "Indstillinger";
+  const schoolId = profileTab.getAttribute("href").match(/\/lectio\/(?<id>\d*)\/indstillinger/).groups.id;
+
+  profileTab.innerText = "Profil & FOSS Improver Settings";
+  profileTab.setAttribute("href", `/lectio/${schoolId}/indstillinger/AdgangIndstillinger.aspx`);
 
   const currentURL = window.location.href;
   const regex = /\/indstillinger\//;
 
   if (currentURL.match(regex)) {
-    console.log("The URL contains 'studentIndstillinger'.");
     const logTab = document.querySelector("#s_m_HeaderContent_subnavigator_ctl15");
     if (logTab) {
-      logTab.innerText = "Improver Settings";
+      logTab.innerText = "FOSS Improver Settings";
     }
   }
   // Endblock
