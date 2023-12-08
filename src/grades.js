@@ -58,7 +58,11 @@ function colorFields(tableSelector, shiftsAmount, arrayIndex) {
   });
 }
 
-colorFields("#printareaDiplomaLines>table>tbody", 2, [2, 3, 5, 6]);
-colorFields("table#s_m_Content_Content_ProtokolLinierGrid>tbody", 1, [9]);
-colorFields("#s_m_Content_Content_karakterView_KarakterNoterGrid>tbody", 1, [2]);
-colorFields("#s_m_Content_Content_karakterView_KarakterGV>tbody", 1, [2]);
+const gradeColors = SettingsStore.get("grade_colors", "true");
+
+if (gradeColors === "true") {
+  colorFields("#printareaDiplomaLines>table>tbody", 2, [2, 3, 5, 6]);
+  colorFields("table#s_m_Content_Content_ProtokolLinierGrid>tbody", 1, [9]);
+  colorFields("#s_m_Content_Content_karakterView_KarakterNoterGrid>tbody", 1, [2]);
+  colorFields("#s_m_Content_Content_karakterView_KarakterGV>tbody", 1, [2]);
+}
