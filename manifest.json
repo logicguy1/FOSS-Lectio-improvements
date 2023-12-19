@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "FOSS Lectio improvements",
   "version": "1.5.1",
   "description": "A free and open source browser extension for Lectio with QoL features.",
