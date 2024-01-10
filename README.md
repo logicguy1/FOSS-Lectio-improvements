@@ -69,6 +69,12 @@ The open nature of this project also ensures that development can continue past 
 
 <br>
 
+# Contributing
+We always welcome contributions whether it's code, documentation, or something else.
+Please see [these](/CONTRIBUTING.md) contributing guidelines.
+
+<br>
+
 # Gallery
 <div align = center>
  
