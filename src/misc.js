@@ -41,8 +41,8 @@ if (masterPageNav) {
   profileTab.innerText = "Profil & FOSS Improver Settings";
   profileTab.setAttribute("href", `/lectio/${schoolId}/indstillinger/AdgangIndstillinger.aspx`);
 
-  const currentURL = window.location.href;
-  const regex = /\/indstillinger\//;
+  var currentURL = window.location.href;
+  var regex = /\/indstillinger\//;
 
   if (currentURL.match(regex)) {
     const logTab = document.querySelector("#s_m_HeaderContent_subnavigator_ctl15");

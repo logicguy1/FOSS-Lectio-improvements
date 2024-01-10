@@ -34,53 +34,65 @@ function hashCode(str) {
     return hash;
 }
 
-var elements = document.getElementsByClassName("s2skemabrikcontent");
+// The schedule recoloring lies here because schedule bricks is everywhere.
+var currentURL = window.location.href;
+var regex = /\/SkemaNy/;
 
-for (let i = 0; i < elements.length; i++) {
-    const colorscheme = SettingsStore.get("schedule_colorscheme", "colorful");
-    if (colorscheme === "basic") {
-      if (elements[i].classList.contains("s2cancelled")) {
-        // Schema cancelled
-        elements[i].parentNode.parentNode.style.color = "#000"; // Sets the time to a black color 
-        elements[i].parentNode.style.backgroundColor = "rgb(252, 81, 81)";
-        elements[i].parentNode.style.backgroundImage = "none";
-      } else if (elements[i].classList.contains("s2changed")) {
-        // Schema changed
-        elements[i].parentNode.style.backgroundColor = "rgb(163, 220, 163)";
-        elements[i].parentNode.style.backgroundImage = "none";
-      } else {
-        // Everything else
-        elements[i].parentNode.style.backgroundColor = "rgb(113, 145, 208)";
-        // elements[i].parentNode.style.backgroundColor = "rgb(211, 229, 245)";
-        elements[i].parentNode.style.backgroundImage = "none";
-      }
-    } else if (colorscheme === "colorful") {
-      var color = "";
+var elements;
+if (currentURL.match(regex)) {
+  var scheduleCells = document.querySelectorAll(".s2skema > tbody > tr:last-child")[0];
+  elements = scheduleCells.querySelectorAll(".s2skemabrikcontent");
+} else {
+  elements = document.querySelectorAll(".s2skemabrikcontent");
+}
 
-      let index = 0;
-      for (let x = 0; x < elements[i].children.length; x++) {
-        if(index === 0 && elements[i].children[x].hasAttribute("data-lectiocontextcard")){
-          color = generateRandomColor(elements[i].children[x].innerText);
-          index++;
-        }
-      }
-
-      if (color !== "") {
+if (elements.length > 0) {
+  for (let i = 0; i < elements.length; i++) {
+      const colorscheme = SettingsStore.get("schedule_colorscheme", "colorful");
+      if (colorscheme === "basic") {
         if (elements[i].classList.contains("s2cancelled")) {
           // Schema cancelled
           elements[i].parentNode.parentNode.style.color = "#000"; // Sets the time to a black color 
           elements[i].parentNode.style.backgroundColor = "rgb(252, 81, 81)";
           elements[i].parentNode.style.backgroundImage = "none";
+        } else if (elements[i].classList.contains("s2changed")) {
+          // Schema changed
+          elements[i].parentNode.style.backgroundColor = "rgb(163, 220, 163)";
+          elements[i].parentNode.style.backgroundImage = "none";
         } else {
           // Everything else
-          elements[i].parentNode.style.backgroundColor = color;
+          elements[i].parentNode.style.backgroundColor = "rgb(113, 145, 208)";
+          // elements[i].parentNode.style.backgroundColor = "rgb(211, 229, 245)";
           elements[i].parentNode.style.backgroundImage = "none";
         }
+      } else if (colorscheme === "colorful") {
+        var color = "";
+
+        let index = 0;
+        for (let x = 0; x < elements[i].children.length; x++) {
+          if(index === 0 && elements[i].children[x].hasAttribute("data-lectiocontextcard")){
+            color = generateRandomColor(elements[i].children[x].innerText);
+            index++;
+          }
+        }
+
+        if (color !== "") {
+          if (elements[i].classList.contains("s2cancelled")) {
+            // Schema cancelled
+            elements[i].parentNode.parentNode.style.color = "#000"; // Sets the time to a black color 
+            elements[i].parentNode.style.backgroundColor = "rgb(252, 81, 81)";
+            elements[i].parentNode.style.backgroundImage = "none";
+          } else {
+            // Everything else
+            elements[i].parentNode.style.backgroundColor = color;
+            elements[i].parentNode.style.backgroundImage = "none";
+          }
+        }
+      } else if (colorscheme === "none") {
+        break;
       }
-    } else if (colorscheme === "none") {
-      break;
-    }
-  elements[i].style.color = "#000";
+    elements[i].style.color = "#000";
+  }
 }
 
 
