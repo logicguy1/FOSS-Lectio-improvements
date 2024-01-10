@@ -1,4 +1,5 @@
 # Contributing
+Please keep in mind that this extension is developed for Firefox first and thereafter ported to Chrome. 
 
 ## Pull requests
 PR's are more than welcome! Remember to state the changes and *why* they are added.
