@@ -34,7 +34,17 @@ function hashCode(str) {
     return hash;
 }
 
-var elements = document.getElementsByClassName("s2skemabrikcontent");
+// The schedule recoloring lies here because schedule bricks is everywhere.
+var currentURL = window.location.href;
+var regex = /\/SkemaNy/;
+
+var elements;
+if (currentURL.match(regex)) {
+  var scheduleCells = document.querySelectorAll(".s2skema > tbody > tr:last-child")[0];
+  elements = scheduleCells.querySelectorAll(".s2skemabrikcontent");
+} else {
+  elements = document.querySelectorAll(".s2skemabrikcontent");
+}
 
 for (let i = 0; i < elements.length; i++) {
     const colorscheme = SettingsStore.get("schedule_colorscheme", "colorful");
