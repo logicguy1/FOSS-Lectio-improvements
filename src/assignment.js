@@ -47,7 +47,7 @@ if (assignmentContainer) {
         const assignmentstate = row.children[5].innerText;
         dueColor = assignmentstate === "Afleveret" ? "" : "#FF0000"
       } else if (days < 1) {
-        dueColor = "#FF0000";
+        dueColor = "#F55A5A";
       } else if (days < 2) {
         dueColor = "#FFEB3B";
       } else if (days < 14) {
