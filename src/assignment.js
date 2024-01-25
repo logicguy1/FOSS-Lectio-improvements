@@ -144,7 +144,7 @@ function createAssignmentField(checkFor, item, fieldText, defaultState) {
 
 
   if (defaultState) {
-    showHideAssignments(checkFor, item);
+    showHideAssignments();
   }
 
   toggleButton.addEventListener("change", function () {
@@ -156,7 +156,7 @@ function createAssignmentField(checkFor, item, fieldText, defaultState) {
       localStorage.setItem(item, JSON.stringify([checkFor,false]));
     }
 
-    showHideAssignments(checkFor, item);
+    showHideAssignments();
   });
 
   assignmentsToggleField.append(toggleButton);
@@ -178,7 +178,7 @@ function getInitialState(item, defaultState, checkFor) {
   return defaultState;
 }
 
-function showHideAssignments(checkFor, item) {
+function showHideAssignments() {
   const assignmentsTable = document.getElementById("s_m_Content_Content_ExerciseGV");
   const assignmentsTBody = assignmentsTable.getElementsByTagName("tbody");
   const assignmentElements = assignmentsTBody[0].getElementsByTagName("tr");
