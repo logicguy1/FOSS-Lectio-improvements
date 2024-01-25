@@ -2,13 +2,19 @@ const assignmentContainer = document.getElementById("printStudentAssignmentsArea
 
 if (assignmentContainer) {
   const assignmentsMenuBar = assignmentContainer.querySelector(".ls-std-rowblock").children;
+  assignmentsMenuBar[0].append["buttons"] = []
 
   // Toggle-fields
-  const deliveredToggleField = createAssignmentField("Afleveret", "hideDelivered", "Skjul afleveret opgaver", true);
+  const deliveredToggleField = createAssignmentField([["5", "Afleveret"]], "hideDelivered", "Skjul afleveret opgaver", true);
   assignmentsMenuBar[0].append(deliveredToggleField);
 
-  const missingToggleField = createAssignmentField("Mangler", "hideMissing", "Skjul manglende opgaver", false);
+  const missingToggleField = createAssignmentField([["5","Mangler"]], "hideMissing", "Skjul manglende opgaver", false);
   assignmentsMenuBar[0].append(missingToggleField);
+
+  const answeredToggleField = createAssignmentField([["7","Lærer"], ["5","Venter"]], "showAnswered", "Vis kun opgaver med svar", false)
+  assignmentsMenuBar[0].append(answeredToggleField);
+
+  localStorage.setItem("items", JSON.stringify(["hideMissing", "hideDelivered", "showAnswered"]))
 
   // BUG: This doens't work properly. Please see https://github.com/logicguy1/FOSS-Lectio-improvements/issues/8
   // const waitingToggleField = createAssignmentField("Lærer", "hideWaiting", "Skjul opgaver uden feedback", false);
@@ -128,7 +134,7 @@ function createAssignmentField(checkFor, item, fieldText, defaultState) {
   toggleButton.id = `${item}-${checkFor}`;
   toggleButton.type = "checkbox";
 
-  toggleButton.checked = getInitialState(item, defaultState);
+  toggleButton.checked = getInitialState(item, defaultState, checkFor);
 
 
   const toggleLabel = document.createElement("label");
@@ -137,15 +143,17 @@ function createAssignmentField(checkFor, item, fieldText, defaultState) {
   toggleLabel.innerText = fieldText;
 
 
-  showHideAssignments(checkFor, item);
+  if (defaultState) {
+    showHideAssignments(checkFor, item);
+  }
 
   toggleButton.addEventListener("change", function () {
     if (toggleButton.checked) {
       toggleButton.setAttribute("checked", true);
-      localStorage.setItem(item, true);
+      localStorage.setItem(item, JSON.stringify([checkFor,true]));
     } else {
       toggleButton.setAttribute("checked", false);
-      localStorage.setItem(item, false);
+      localStorage.setItem(item, JSON.stringify([checkFor,false]));
     }
 
     showHideAssignments(checkFor, item);
@@ -158,16 +166,15 @@ function createAssignmentField(checkFor, item, fieldText, defaultState) {
   return assignmentsToggleField;
 }
 
-function getInitialState(item, defaultState) {
-  const itemState = localStorage.getItem(item);
-
+function getInitialState(item, defaultState, checkFor) {
+  const itemState = JSON.parse(localStorage.getItem(item))[1];
   if (itemState === "true") {
     return true;
   } else if (itemState === "false") {
     return false;
   }
 
-  localStorage.setItem(item, defaultState);
+  localStorage.setItem(item, JSON.stringify([checkFor,defaultState]));
   return defaultState;
 }
 
@@ -176,20 +183,28 @@ function showHideAssignments(checkFor, item) {
   const assignmentsTBody = assignmentsTable.getElementsByTagName("tbody");
   const assignmentElements = assignmentsTBody[0].getElementsByTagName("tr");
 
-  let assignmentState = "table-row";
+  const items = JSON.parse(localStorage.getItem("items"))
 
-  if (localStorage.getItem(item) === "true") {
-    assignmentState = "none";
-  } else {
-    assignmentState = "table-row";
+  for (let i = 0; i < assignmentElements.length; i++) {
+    const assignmentTD = assignmentElements[i].getElementsByTagName("td");
+    assignmentElements[i].style.display = "table-row"
   }
 
-  for (let i = 1; i < assignmentElements.length; i++) {
-    const assignmentTD = assignmentElements[i].getElementsByTagName("td");
-    if (assignmentTD[5].innerText === checkFor) {
-      assignmentElements[i].style.display = assignmentState;
-    } else if (assignmentTD[7].innerText === checkFor) {
-      assignmentElements[i].style.display = assignmentState;
+  for (let o = 0; o < items.length; o++) {
+
+    const item = JSON.parse(localStorage.getItem(items[o]))
+    const checkFor = item[0]
+    const state = item[1]
+
+    for (let i = 1; i < assignmentElements.length; i++) {
+      const assignmentTD = assignmentElements[i].getElementsByTagName("td");
+      for (let u = 0; u < checkFor.length; u++) {
+        if (assignmentTD[checkFor[u][0]].innerText === checkFor[u][1]) {
+          if (state) {
+            assignmentElements[i].style.display = "none"
+          }
+        }
+      }
     }
   }
 }
