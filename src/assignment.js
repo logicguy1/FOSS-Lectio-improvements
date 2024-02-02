@@ -195,7 +195,6 @@ function showHideAssignments() {
 
   for (let o = 0; o < items.length; o++) {
 
-    const item = JSON.parse(localStorage.getItem(items[o]))
     const checkFor = items[o][0]
     const state = items[o][1]
 
