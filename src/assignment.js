@@ -203,7 +203,6 @@ function showHideAssignments() {
       const assignmentTD = assignmentElements[i].getElementsByTagName("td");
       for (let u = 0; u < checkFor.length; u++) {
         if (assignmentTD[checkFor[u][0]].innerText === checkFor[u][1] && state) {
-          //assignmentElements[i].style.display = "none"
           elementsToHide.push(assignmentElements[i]); 
         }
       }
