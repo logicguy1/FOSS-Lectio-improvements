@@ -191,25 +191,28 @@ function showHideAssignments() {
   const elementsToHide = []
 
   const localStorageItems = JSON.parse(localStorage.getItem("items"));
-  const items = localStorageItems.map(item => JSON.parse(localStorage.getItem(item)));
+  
+  if (localStorageItems) {
+    const items = localStorageItems.map(item => JSON.parse(localStorage.getItem(item)));
 
-  for (let o = 0; o < items.length; o++) {
+    for (let o = 0; o < items.length; o++) {
 
-    const checkFor = items[o][0]
-    const state = items[o][1]
+      const checkFor = items[o][0]
+      const state = items[o][1]
 
-    for (let i = 1; i < assignmentElements.length; i++) {
-      const assignmentTD = assignmentElements[i].getElementsByTagName("td");
-      for (let u = 0; u < checkFor.length; u++) {
-        if (assignmentTD[checkFor[u][0]].innerText === checkFor[u][1] && state) {
-          elementsToHide.push(assignmentElements[i]); 
+      for (let i = 1; i < assignmentElements.length; i++) {
+        const assignmentTD = assignmentElements[i].getElementsByTagName("td");
+        for (let u = 0; u < checkFor.length; u++) {
+          if (assignmentTD[checkFor[u][0]].innerText === checkFor[u][1] && state) {
+            elementsToHide.push(assignmentElements[i]); 
+          }
         }
       }
     }
-  }
 
-  // Hide elements in a batch
-  elementsToHide.forEach(element => {
-    element.style.display = "none";
-  });
+    // Hide elements in a batch
+    elementsToHide.forEach(element => {
+      element.style.display = "none";
+    });
+  }
 }
