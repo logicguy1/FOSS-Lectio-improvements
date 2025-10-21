@@ -81,29 +81,26 @@ const fmtOptions = {
 };
 
 function getCountdownTime(input) {
-  // Match the expected format: DD/MM-YYYY HH:mm
-  const dateRegex = /^(\d+)\/(\d+)-(\d+) (\d+):(\d+)$/;
+  // Match more formats: 21/10-2025 08:15, 21-10-2025 08:15, 21.10.2025 08:15
+  const dateRegex = /^(\d{1,2})[\/\.\-](\d{1,2})[\-\/](\d{2,4}) (\d{1,2}):(\d{2})$/;
   const match = input.match(dateRegex);
 
   if (!match) {
     console.error("Invalid date format:", input);
-    return NaN; // Return NaN for invalid formats
+    return NaN;
   }
 
-  var [, day, month, year, hour, minute] = match;
+  let [, day, month, year, hour, minute] = match;
+  if (year.length === 2) year = "20" + year; // handle short years
 
-  // Ensure two-digit representation for day and month;
-  // this D/M-YYYY HH:mm date format causes errors.
   day = day.padStart(2, "0");
   month = month.padStart(2, "0");
 
   const formattedDateString = `${year}-${month}-${day}T${hour}:${minute}:00`;
   const copenhagenDate = new Date(formattedDateString);
 
-  const currentTime = new Date().toLocaleString('da-DK', fmtOptions).replace(/(\d+)\.(\d+)\.(\d+) (\d+)\.(\d+)\.(\d+)/, "$3-$2-$1T$4:$5:$6");
-  const today = new Date(currentTime);
-
-  return distance = copenhagenDate.getTime() - today.getTime();
+  const today = new Date(); // simpler + reliable
+  return copenhagenDate.getTime() - today.getTime();
 }
 
 function formatDueText(days, hours, minutes, seconds) {
